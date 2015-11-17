@@ -1,10 +1,6 @@
-import msgpack                       from 'msgpack-lite'
-import { validatorWithDependencies } from './validator'
-import { default as name }           from './semantic-tag'
-import { default as peer }           from './semantic-tag-peer'
-import { default as spatial }        from './semantic-tag-spatial'
-import { default as time }           from './semantic-tag-time'
-import { default as direction }      from './semantic-tag-direction'
+import msgpack                                         from 'msgpack-lite'
+import { semanticTag, peer, direction, spatial, time } from 'semantic-tag'
+import { validatorWithDependencies }                   from './validator'
 
 const interest = {
   "id":          "#/interest",
@@ -20,10 +16,7 @@ const interest = {
       "type": "array",
       "items": {"$ref": "#/semanticTag/peer"}
     },
-    "peer": {
-      "type": "array",
-      "items": {"$ref": "#/semanticTag/peer"}
-    }, // TODO ist peer semantic tag optional oder wiederholend?
+    "peer": { "$ref": "#/semanticTag/peer"},
     "recipients": {
       "type": "array",
       "items": {"$ref": "#/semanticTag/peer"}

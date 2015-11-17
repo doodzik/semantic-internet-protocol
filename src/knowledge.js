@@ -1,5 +1,5 @@
 import msgpack                                     from 'msgpack-lite'
-import { validatorWithDependencies } from './validator'
+import { validatorWithDependencies }               from './validator'
 import contextCoordinate, { dependencies as deps } from './context-coordinate'
 
 const knowledge = {
