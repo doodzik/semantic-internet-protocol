@@ -1,1 +1,3 @@
-export { serialize, deserialize, Serializer } from './bla'
+import { default as knowledge } from './knowledge'
+import { default as interest  } from './interest'
+import { default as header    } from './header'

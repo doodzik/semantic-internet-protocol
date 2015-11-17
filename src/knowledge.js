@@ -2,7 +2,7 @@ import msgpack                                     from 'msgpack-lite'
 import { validatorWithDependencies }               from './validator'
 import contextCoordinate, { dependencies as deps } from './context-coordinate'
 
-const knowledge = {
+export const knowledge = {
   "id":          "#/knowledge",
   "$schema":     "http://json-schema.org/draft-04/schema#",
   "description": "schema for knowledge",
@@ -18,7 +18,6 @@ const knowledge = {
   }
 }
 
-export default knowledge
 export const dependencies = deps.concat(contextCoordinate)
 export const validate = validatorWithDependencies(knowledge, dependencies)
 
@@ -33,3 +32,5 @@ export function deserialize(obj) {
   var buffer = msgpack.encode(obj)
   return buffer
 }
+
+export default { deserialize, serialize }

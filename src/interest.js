@@ -2,7 +2,7 @@ import msgpack                                         from 'msgpack-lite'
 import { semanticTag, peer, direction, spatial, time } from 'semantic-tag'
 import { validatorWithDependencies }                   from './validator'
 
-const interest = {
+export const interest = {
   "id":          "#/interest",
   "$schema":     "http://json-schema.org/draft-04/schema#",
   "description": "",
@@ -36,18 +36,19 @@ const interest = {
   }
 }
 
-export default interest
-export const dependencies = [ name, peer, spatial, time, direction ]
+export const dependencies = [ semanticTag, peer, spatial, time, direction ]
 export const validate     = validatorWithDependencies(interest, dependencies)
 
-export function serialize(buffer) {
+function serialize(buffer) {
   var obj = msgpack.decode(buffer)
   validate(obj)
   return obj
 }
 
-export function deserialize(obj) {
+function deserialize(obj) {
   validate(obj)
   var buffer = msgpack.encode(obj)
   return buffer
 }
+
+export default { deserialize, serialize }

@@ -1,10 +1,10 @@
 import assert                            from 'assert'
-import { _regex, deserialize, serialze } from '../src/header.js'
+import { _regex, deserialize, serialize } from '../src/header.js'
 
 describe('header', () => {
   describe('#serialize', () => {
     it('serializes the header obj', () => {
-      const str = serialze({version: 1.0, contentLength: 53, command: 'insert'})
+      const str = serialize({version: 1.0, contentLength: 53, command: 'insert'})
       assert(str == 'SIP/1.0 53\ncommand insert\n\n')
     })
   })
@@ -19,7 +19,7 @@ describe('header', () => {
     it('matches returns header and body', () => {
       const headerOld                = { version: 1.0, contentLength: 53, command: 'insert' }
       const body                     = 'blablabla'
-      const head                     = serialze(headerOld)
+      const head                     = serialize(headerOld)
       const [ header, buff ]         = deserialize(head + body)
       assert(JSON.stringify(header) == JSON.stringify(headerOld))
       assert(buff == body)
