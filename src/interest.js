@@ -1,43 +1,30 @@
 import msgpack                                         from 'msgpack-lite'
-import { semanticTag, peer, direction, spatial, time } from 'semantic-tag'
-import { validatorWithDependencies }                   from './validator'
+import semanticTag, { peer, direction, spatial, time } from 'semantic-tag'
 
-export const interest = {
-  "id":          "#/interest",
-  "$schema":     "http://json-schema.org/draft-04/schema#",
-  "description": "",
-  "type":        "object",
-  "properties": {
-    "topics": {
-      "type": "array",
-      "items": {"$ref": "#/semanticTag"}
-    },
-    "believers": {
-      "type": "array",
-      "items": {"$ref": "#/semanticTag/peer"}
-    },
-    "peer": { "$ref": "#/semanticTag/peer"},
-    "recipients": {
-      "type": "array",
-      "items": {"$ref": "#/semanticTag/peer"}
-    },
-    "locations": {
-      "type": "array",
-      "items": {"$ref": "#/semanticTag/spatial"}
-    },
-    "times": {
-      "type": "array",
-      "items": {"$ref": "#/semanticTag/time"}
-    },
-    "direction": {
-      "type": "array",
-      "items": {"$ref": "#/semanticTag/direction"}
+export function validate(obj) {
+  if(obj) {
+    if (obj.topics) {
+      obj.topics.forEach(val => semanticTag(val) )
+    }
+    if (obj.believers) {
+      obj.believers.forEach(val => peer(val) )
+    }
+    if (obj.peer)
+      peer(obj.peer)
+    if (obj.recipients) {
+      obj.recipients.forEach(val => peer(val) )
+    }
+    if (obj.locations) {
+      obj.locations.forEach(val => spatial(val) )
+    }
+    if (obj.times) {
+      obj.times.forEach(val => time(val) )
+    }
+    if (obj.directions) {
+      obj.directions.forEach(val => direction(val) )
     }
   }
 }
-
-export const dependencies = [ semanticTag, peer, spatial, time, direction ]
-export const validate     = validatorWithDependencies(interest, dependencies)
 
 function serialize(buffer) {
   var obj = msgpack.decode(buffer)

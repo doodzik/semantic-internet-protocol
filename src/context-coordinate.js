@@ -1,16 +1,8 @@
-import interest, { dependencies as deps } from './interest'
+import interest from './interest'
 
-export const dependencies = deps.concat(interest)
-
-export default {
-  "id":          "#/contextCoordinate",
-  "$schema":     "http://json-schema.org/draft-04/schema#",
-  "description": "",
-  "type":        "object",
-  "required":    ["infoMetaInformation", "contextCoordinate"],
-  "properties":  {
-    "contextCoordinate": { "$ref": "#/interest" },
-    "infoMetaInformation": "string"
-  }
+export default function validate(obj) {
+  if(obj.infoMetaInformation !== 'string')
+    throw new Error('infoMetaInformation needs to be a string')
+  interest(obj.contextCoordinate)
 }
 
