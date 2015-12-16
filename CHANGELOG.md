@@ -1,3 +1,7 @@
+## Version 0.0.3 2015-12-16
+
+fix dependencie
+
 ## Version 0.0.2 2015-12-11
 
 remove need for external validator

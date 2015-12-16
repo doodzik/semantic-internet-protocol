@@ -1,6 +1,6 @@
 {
   "name": "semantic-internet-protocol",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "an implementation of the semantic internet protocol 1.0",
   "main": "lib/semantic-internet-protocol.js",
   "scripts": {
@@ -43,6 +43,6 @@
   },
   "dependencies": {
     "msgpack-lite": "^0.1.13",
-    "semantic-tag": "0.0.3"
+    "semantic-tag": "0.0.4"
   }
 }
