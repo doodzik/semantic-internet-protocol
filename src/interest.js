@@ -1,4 +1,3 @@
-import msgpack                                         from 'msgpack-lite'
 import semanticTag, { peer, direction, spatial, time } from 'semantic-tag'
 
 export function validate(obj) {
@@ -27,14 +26,14 @@ export function validate(obj) {
 }
 
 function serialize(buffer) {
-  var obj = msgpack.decode(buffer)
+  var obj = JSON.parse(buffer)
   validate(obj)
   return obj
 }
 
 function deserialize(obj) {
   validate(obj)
-  var buffer = msgpack.encode(obj)
+  var buffer = JSON.stringify(obj)
   return buffer
 }
 

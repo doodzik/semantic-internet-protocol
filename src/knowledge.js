@@ -1,4 +1,3 @@
-import msgpack           from 'msgpack-lite'
 import contextCoordinate from './context-coordinate'
 
 export function validate(obj) {
@@ -14,14 +13,14 @@ export function validate(obj) {
 }
 
 export function serialize(buffer) {
-  var obj = msgpack.decode(buffer)
+  var obj = JSON.parse(buffer)
   validate(obj)
   return obj
 }
 
 export function deserialize(obj) {
   validate(obj)
-  var buffer = msgpack.encode(obj)
+  var buffer = JSON.stringify(obj)
   return buffer
 }
 
