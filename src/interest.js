@@ -1,6 +1,6 @@
-import semanticTag, { peer, direction, spatial, time } from 'semantic-tag'
+var { semanticTag, peer, direction, spatial, time } = require('./semantic-tag')
 
-export function validate(obj) {
+function validate(obj) {
   if(obj) {
     if (obj.topics) {
       obj.topics.forEach(val => semanticTag(val) )
@@ -25,16 +25,16 @@ export function validate(obj) {
   }
 }
 
-function serialize(buffer) {
+function deserialize(buffer) {
   var obj = JSON.parse(buffer)
   validate(obj)
   return obj
 }
 
-function deserialize(obj) {
+function serialize(obj) {
   validate(obj)
   var buffer = JSON.stringify(obj)
   return buffer
 }
 
-export default { deserialize, serialize }
+module.exports = { deserialize, serialize, validate }

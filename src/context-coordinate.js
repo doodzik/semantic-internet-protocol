@@ -1,6 +1,6 @@
-import interest from './interest'
+var interest = require('./interest')
 
-export default function validate(obj) {
+module.exports = function validate(obj) {
   if(obj.infoMetaInformation !== 'string')
     throw new Error('infoMetaInformation needs to be a string')
   interest(obj.contextCoordinate)

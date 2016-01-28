@@ -1,27 +1,27 @@
-import contextCoordinate from './context-coordinate'
+var contextCoordinate = require('./context-coordinate')
 
-export function validate(obj) {
+function validate(obj) {
   if (typeof obj.vocabulary !== 'string') {
-    throw new Error('vocabulary requeired')
+    throw new Error('vocabulary required')
   }
   if (typeof obj.infoContent !== 'string') {
-    throw new Error('vocabulary requeired')
+    throw new Error('infoContent required')
   }
   if (obj.contextCoordinates) {
     obj.contextCoordinates.forEach(val => contextCoordinate(val) )
   }
 }
 
-export function serialize(buffer) {
+function deserialize(buffer) {
   var obj = JSON.parse(buffer)
   validate(obj)
   return obj
 }
 
-export function deserialize(obj) {
+function serialize(obj) {
   validate(obj)
   var buffer = JSON.stringify(obj)
   return buffer
 }
 
-export default { deserialize, serialize }
+module.exports = { deserialize, serialize, validate }

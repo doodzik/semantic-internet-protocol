@@ -1,3 +1,5 @@
-import { default as knowledge } from './knowledge'
-import { default as interest  } from './interest'
-import { default as header    } from './header'
+var knowledge = require('./knowledge')
+var interest  = require('./interest')
+var header    = require('./header')
+
+module.exports = { knowledge, interest, header }
